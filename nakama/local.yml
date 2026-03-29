@@ -1,0 +1,15 @@
+logger:
+  level: "DEBUG"
+
+session:
+  token_expiry_sec: 7200
+
+socket:
+  server_key: "defaultkey"
+
+runtime:
+  js_entrypoint: "build/index.js"
+
+console:
+  username: "admin"
+  password: "password"
