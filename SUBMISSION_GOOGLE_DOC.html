@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Assignment Submission – SAI KRISHNA</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      font-size: 11pt;
+      line-height: 1.6;
+      color: #202124;
+      max-width: 750px;
+      margin: 40px auto;
+      padding: 0 24px;
+    }
+
+    h1 {
+      font-size: 20pt;
+      color: #1a73e8;
+      border-bottom: 2px solid #1a73e8;
+      padding-bottom: 8px;
+      margin-bottom: 4px;
+    }
+
+    h2 {
+      font-size: 13pt;
+      color: #1a73e8;
+      margin-top: 28px;
+      margin-bottom: 6px;
+      border-left: 4px solid #1a73e8;
+      padding-left: 10px;
+    }
+
+    h3 {
+      font-size: 11pt;
+      color: #333;
+      margin-top: 16px;
+      margin-bottom: 4px;
+    }
+
+    .meta {
+      background: #f1f3f4;
+      border-radius: 6px;
+      padding: 12px 16px;
+      margin: 12px 0 24px 0;
+      font-size: 10.5pt;
+    }
+
+    .meta p { margin: 3px 0; }
+    .meta a { color: #1a73e8; text-decoration: none; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 10.5pt;
+    }
+
+    th {
+      background: #1a73e8;
+      color: white;
+      padding: 8px 12px;
+      text-align: left;
+    }
+
+    td {
+      padding: 7px 12px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    tr:nth-child(even) td { background: #f8f9fa; }
+
+    code {
+      background: #f1f3f4;
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+      font-size: 10pt;
+    }
+
+    pre {
+      background: #f1f3f4;
+      border-left: 4px solid #1a73e8;
+      padding: 12px 16px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 9.5pt;
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    ul, ol {
+      padding-left: 20px;
+      margin: 8px 0;
+    }
+
+    li { margin: 4px 0; }
+
+    .badge {
+      display: inline-block;
+      background: #e8f0fe;
+      color: #1a73e8;
+      border-radius: 12px;
+      padding: 2px 10px;
+      font-size: 9.5pt;
+      margin: 2px 3px;
+    }
+
+    .section-divider {
+      border: none;
+      border-top: 1px solid #e0e0e0;
+      margin: 24px 0;
+    }
+
+    .highlight-box {
+      background: #e8f5e9;
+      border-left: 4px solid #34a853;
+      padding: 10px 14px;
+      border-radius: 4px;
+      margin: 12px 0;
+      font-size: 10.5pt;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Backend Developer Assignment Submission</h1>
+
+  <div class="meta">
+    <p><strong>Name:</strong> SAGADABOINA SAI KRISHNA</p>
+    <p><strong>Role:</strong> Backend Developer</p>
+    <p><strong>GitHub:</strong> <a href="https://github.com/SAIkri45/lila-assignment">https://github.com/SAIkri45/lila-assignment</a></p>
+    <p><strong>Live Demo:</strong> <a href="https://lila-assignment.pages.dev/">https://lila-assignment.pages.dev/</a></p>
+  </div>
+
+  <h2>Project Overview</h2>
+  <p>
+    A production-ready, real-time <strong>Multiplayer Tic-Tac-Toe</strong> game built with a
+    <strong>server-authoritative architecture</strong> using <strong>Nakama</strong> as the backend game server.
+    All game logic runs on the server — clients only send intent; the server validates, applies, and
+    broadcasts every state change.
+  </p>
+
+  <hr class="section-divider" />
+
+  <h2>Tech Stack</h2>
+  <table>
+    <tr><th>Layer</th><th>Technology</th></tr>
+    <tr><td>Frontend</td><td>React 18 + TypeScript + Vite</td></tr>
+    <tr><td>UI Components</td><td>shadcn/ui (Radix UI) + Tailwind CSS</td></tr>
+    <tr><td>State Management</td><td>Zustand</td></tr>
+    <tr><td>Realtime Client</td><td>@heroiclabs/nakama-js (WebSocket)</td></tr>
+    <tr><td>Backend</td><td>Nakama Server (TypeScript runtime)</td></tr>
+    <tr><td>Database</td><td>CockroachDB (via Nakama)</td></tr>
+    <tr><td>Deployment</td><td>Docker Compose (backend) + Cloudflare Pages (frontend)</td></tr>
+  </table>
+
+  <hr class="section-divider" />
+
+  <h2>Features Implemented</h2>
+
+  <h3>Core Requirements</h3>
+  <ul>
+    <li><strong>Server-Authoritative Game Logic</strong> — Board state, turn management, and win detection all run on the Nakama server. Clients cannot manipulate game state.</li>
+    <li><strong>Real-Time Multiplayer</strong> — WebSocket-based communication for instant, bidirectional game state updates between players.</li>
+    <li><strong>Matchmaking System</strong> — <code>find_match</code> RPC automatically pairs players. Finds open matches first; creates a new one if none available.</li>
+    <li><strong>Anti-Cheat</strong> — Server rejects out-of-turn moves, occupied-cell moves, and out-of-bounds positions.</li>
+  </ul>
+
+  <h3>Bonus Features</h3>
+  <ul>
+    <li><strong>Concurrent Game Support</strong> — Multiple simultaneous matches with fully isolated game rooms.</li>
+    <li><strong>Leaderboard System</strong> — Global ranking persisted in Nakama storage: Win +200 pts, Draw +25 pts, Loss −50 pts. Top 20 players displayed in-game.</li>
+    <li><strong>Win Streak Tracking</strong> — Per-player streak counter, reset on loss or draw.</li>
+    <li><strong>Timer-Based Game Mode</strong> — 30-second per-turn timer (selectable at match start). Server auto-forfeits on timeout — no client involvement needed.</li>
+  </ul>
+
+  <hr class="section-divider" />
+
+  <h2>Architecture</h2>
+
+  <h3>Server-Authoritative Flow</h3>
+  <pre>
+Client A                    Nakama Server                   Client B
+   |                             |                             |
+   |-- MOVE {position: 4} ----->|                             |
+   |                             |-- validate turn order       |
+   |                             |-- validate cell is empty    |
+   |                             |-- apply move to board       |
+   |                             |-- check for winner          |
+   |&lt;-- STATE_UPDATE -----------|-- STATE_UPDATE ------------->|
+   |                             |                             |</pre>
+
+  <h3>OpCodes (Client ↔ Server Protocol)</h3>
+  <table>
+    <tr><th>Code</th><th>Name</th><th>Direction</th><th>Description</th></tr>
+    <tr><td>1</td><td>MOVE</td><td>Client → Server</td><td>Player sends move <code>{position: 0–8}</code></td></tr>
+    <tr><td>2</td><td>STATE_UPDATE</td><td>Server → Client</td><td>Full game state broadcast after each valid move</td></tr>
+    <tr><td>3</td><td>GAME_OVER</td><td>Server → Client</td><td>Game result with winner / draw / reason</td></tr>
+    <tr><td>4</td><td>MATCH_READY</td><td>Server → Client</td><td>Both players joined — game begins</td></tr>
+    <tr><td>5</td><td>OPPONENT_LEFT</td><td>Server → Client</td><td>Opponent disconnected — remaining player wins</td></tr>
+  </table>
+
+  <h3>RPC Endpoints (Backend API)</h3>
+  <table>
+    <tr><th>RPC</th><th>Payload</th><th>Response</th></tr>
+    <tr><td><code>find_match</code></td><td><code>{mode: "classic" | "timed"}</code></td><td><code>{matchId: string}</code></td></tr>
+    <tr><td><code>get_player_stats</code></td><td><code>{}</code></td><td><code>{wins, losses, draws, streak, score}</code></td></tr>
+    <tr><td><code>get_leaderboard</code></td><td><code>{}</code></td><td><code>{records: LeaderboardEntry[]}</code></td></tr>
+  </table>
+
+  <h3>Matchmaking Flow</h3>
+  <ol>
+    <li>Client calls <code>find_match</code> RPC with chosen mode (<code>classic</code> or <code>timed</code>)</li>
+    <li>Server lists open authoritative matches filtered by mode label</li>
+    <li>If an open match exists (0–1 players), returns its match ID</li>
+    <li>Otherwise, creates a new authoritative match</li>
+    <li>Client joins via WebSocket socket</li>
+    <li>When 2nd player joins, server broadcasts <code>MATCH_READY</code> and game begins</li>
+  </ol>
+
+  <hr class="section-divider" />
+
+  <h2>Project Structure</h2>
+  <pre>
+tic-tac-toe/
+├── src/                          # React frontend
+│   ├── components/game/
+│   │   ├── GameBoard.tsx         # Board UI, timer display, win results
+│   │   ├── Leaderboard.tsx       # Global leaderboard view
+│   │   ├── MatchmakingScreen.tsx # Waiting for opponent screen
+│   │   └── NicknameScreen.tsx    # Nickname input + mode selection
+│   ├── lib/
+│   │   └── nakama.ts             # Nakama client wrapper (auth, socket, RPCs)
+│   ├── store/
+│   │   └── gameStore.ts          # Zustand store + Nakama integration
+│   └── pages/
+│       └── Index.tsx             # Page routing by game status
+├── nakama/                       # Backend (Nakama TypeScript runtime)
+│   ├── src/
+│   │   └── main.ts               # Match handler, RPCs, leaderboard logic
+│   ├── build/
+│   │   └── index.js              # Compiled server module loaded by Nakama
+│   ├── docker-compose.yml        # Nakama + CockroachDB containers
+│   └── local.yml                 # Nakama server configuration
+└── package.json</pre>
+
+  <hr class="section-divider" />
+
+  <h2>How to Run Locally</h2>
+
+  <h3>Prerequisites</h3>
+  <ul>
+    <li>Node.js v18+</li>
+    <li>Docker &amp; Docker Compose</li>
+  </ul>
+
+  <h3>Step 1 — Start Nakama Backend</h3>
+  <pre>
+cd nakama
+npm install
+npm run build
+docker-compose up -d</pre>
+  <p>Nakama available at:</p>
+  <ul>
+    <li>Game API: <code>http://localhost:7350</code></li>
+    <li>Admin Console: <code>http://localhost:7351</code> (admin / password)</li>
+  </ul>
+
+  <h3>Step 2 — Start Frontend</h3>
+  <pre>
+npm install
+npm run dev</pre>
+  <p>App runs at <code>http://localhost:8080</code></p>
+
+  <h3>Step 3 — Test Multiplayer</h3>
+  <p>Open <code>http://localhost:8080</code> in two separate browser windows (or one in incognito). Enter different nicknames, select the same mode, click Continue — both players are auto-matched.</p>
+
+  <hr class="section-divider" />
+
+  <h2>Key Design Decisions</h2>
+
+  <h3>Why Nakama?</h3>
+  <p>Nakama is purpose-built for game backends — it provides authoritative match handlers, built-in WebSocket transport, leaderboards, and persistent storage out of the box, making it the ideal server for a real-time multiplayer game.</p>
+
+  <h3>Why Server-Authoritative?</h3>
+  <p>Prevents cheating entirely. Clients only send intent (move position); the server validates and applies all state changes. Clients receive the authoritative state via broadcast — they cannot fake or replay moves.</p>
+
+  <h3>Timed Mode Implementation</h3>
+  <p>The server tracks <code>turnDeadlineTick</code> (the tick number when the turn expires). On every <code>matchLoop</code> tick, if <code>tick &gt;= turnDeadlineTick</code>, the current player forfeits and the opponent wins — enforced entirely server-side with no client trust.</p>
+
+  <h3>Leaderboard Persistence</h3>
+  <p>Player stats (<code>wins</code>, <code>losses</code>, <code>draws</code>, <code>streak</code>, <code>score</code>) are stored in Nakama's storage engine with <code>permissionWrite: 0</code> (server-only writes). The leaderboard uses Nakama's native incremental leaderboard — clients can only read, never write scores.</p>
+
+  <hr class="section-divider" />
+
+  <div class="highlight-box">
+    <strong>GitHub Repository:</strong> <a href="https://github.com/SAIkri45/lila-assignment">https://github.com/SAIkri45/lila-assignment</a><br/>
+    <strong>Live Demo:</strong> <a href="https://lila-assignment.pages.dev/">https://lila-assignment.pages.dev/</a>
+  </div>
+
+</body>
+</html>
